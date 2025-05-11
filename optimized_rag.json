@@ -1,0 +1,52 @@
+{
+  "retriever": {
+    "k": 5
+  },
+  "response_generator": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "question": "Does Databricks keep history and show historical query performance, trends, etc.?",
+        "response": "Yes, Databricks does keep query history and show historical performance, trends etc. for SQL queries performed using SQL warehouses. You can use the query history to view the details of a query execution, such as the duration, SQL command, number of rows returned, and I\/O performance. Databricks also has system tables that has Audit logs, Billable usage logs, Table and column lineage. By default the history is retained for 90 days."
+      },
+      {
+        "question": "Can you view and query tables at a previous point in time?",
+        "response": "Yes, this feature is called Delta Time Travel and it allows users to access any historical version of the big data stored in their data lake, which simplifies data pipeline, audit, rollback, and reproducibility [1]. Users can also overwrite, append, or merge data to a table with implicit schema change accommodation.\nTo use Delta Time Travel, users can specify either a timestamp or a version number when reading a Delta table or directory[2] . For example, in Scala:\nval df = spark.read\n.format(\"delta\")\n.option (\"timestampAsOf\", \"2019-01-01\")\n.load (\"\/path\/to\/my\/table\")\nThis will load the version of the table as of 2019-01-01. Alternatively, users can use version numbers:\nval df = spark.read\n.format(\"delta\")\n.option (\"versionAsOf\", 10)\n.load (\"\/path\/to\/my\/table\")\nThis will load the version of the table with version number 10.\nBoth version numbers and timestamps are supported in SQL and Python[2]. An example of SQL syntax based on version number is:\nSELECT count(*)\nFROM mytable\nVERSION AS OF 10\nThis will return the count of rows in the table with version number 10.\nDelta Time Travel is a powerful feature that enables users to work with changing data in a reliable and efficient way. It also provides a foundation for building advanced analytics applications that require temporal data management.\n[1] https:\/\/www.databricks.com\/blog\/2019\/02\/04\/introducing-delta-time-travel-for-large-scale-data-lakes.html\n[2] https:\/\/docs.databricks.com\/en\/delta\/history.html#delta-time-travel-syntax"
+      },
+      {
+        "question": "Can you explain how Databricks handles large-scale data ingestion and ETL processes?",
+        "response": "Databricks handles large-scale data ingestion and ETL (Extract, Transform, Load) by leveraging its scalable architecture and features designed for efficient data processing:\n\nScalable Compute Resources: Utilizes Spark clusters that can scale horizontally to handle large volumes of data.\nDelta Lake: Offers efficient storage and management of large datasets with ACID compliance, enabling safe concurrent reads and writes.\nAuto Loader: Simplifies incremental data ingestion from cloud object stores, automatically detecting and processing new files efficiently.\nOptimized Data Formats: Supports Parquet and ORC file formats, which are optimized for analytical queries and compression.\nParallel Processing: Distributes ETL workloads across multiple nodes in a cluster, allowing for faster data processing.\nData Partitioning and Skipping: Uses partitioning strategies and data skipping techniques to reduce the amount of data read during queries.\nPipeline Orchestration: Provides tools like Databricks Workflows to automate and manage ETL pipelines, including scheduling and dependency management.\nTransformations with Spark SQL and DataFrames: Offers powerful APIs for data transformation using familiar SQL syntax or DataFrame operations.\n\nThese capabilities enable organizations to ingest and process terabytes to petabytes of data efficiently, turning raw data into actionable insights."
+      },
+      {
+        "question": "Can parallelism be set regardless of data partitions or is parallel execution achieved by having workloads run against each partition?",
+        "response": "Yes, set regardless of partitions. Parallelism can be achieved without partitions. Multiple workloads can run against the same unpartitioned tables. Data and metadata are in the object storage layer, so there is no limit on number of parallel threads consuming that table [1]. Similarly for write workloads multiple parallel threads could be writing to the same table as long as there are no logical concurrency conflicts ie two parallel threads trying to update the same file at the same time. For such special workloads, customers use partitions to write to those tables concurrently to avoid concurrency conflicts [2]. [1]https:\/\/docs.delta.io\/0.4.0\/delta-concurrency.html\n[2]https:\/\/docs.databricks.com\/optimization"
+      }
+    ],
+    "signature": {
+      "instructions": "Given the fields `context`, `question`, produce a response that provides a clear and concise explanation of how to manage database schema changes across multiple instances of the same database, including the level of automation provided by Databricks features such as Delta Lake, Unity Catalog, Databricks Workflows, and automated schema change tools.",
+      "fields": [
+        {
+          "prefix": "Context:",
+          "description": "${context}"
+        },
+        {
+          "prefix": "Question:",
+          "description": "${question}"
+        },
+        {
+          "prefix": "Response:",
+          "description": "${response}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "2.6.23",
+      "cloudpickle": "3.1"
+    }
+  }
+}
