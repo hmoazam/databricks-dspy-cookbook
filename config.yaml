@@ -1,24 +1,24 @@
 # Unity catalog location
-catalog: "hannamoazam_catalog"
-schema: "dspy_cookbook"
-volume: "data"
-table: "db_docs_bronze"
-eval_table: "synthetic_data_bronze"
+catalog: "" # create in advance
+schema: "" # create in advance
+volume: ""
+table: ""
+eval_table: ""
 
 # Chat/embedding models
 chat_model_name: "system.ai.llama_v3_2_3b_instruct"
-chat_endpoint_name: "meta-llama-3-2-3b-instruct-hanna"
+chat_endpoint_name: ""
 
 embedding_model_name: "system.ai.gte_large_en_v1_5"
-embedding_endpoint_name: "gte_large_en_v1_5_hanna"
+embedding_endpoint_name: ""
 
 # Vector search
-vector_search_endpoint: "one-env-shared-endpoint-5"
-vector_search_index: "dspy_cookbook_index"
+vector_search_endpoint: ""
+vector_search_index: ""
 
 # The name of your agent
-agent_name: "dspy_cookbook_agent"
+agent_name: ""
 
 # Access token
-secret_scope_name : "luis_moros_secrets"
-secret_key: "general_tasks_pat"
+secret_scope_name : "" # create in advance
+secret_key: "" # create in advance
