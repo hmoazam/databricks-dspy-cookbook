@@ -1,6 +1,6 @@
 # Unity catalog location
-catalog: "" # create in advance
-schema: "" # create in advance
+catalog: "" 
+schema: "" 
 volume: ""
 table: ""
 eval_table: ""
