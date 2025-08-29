@@ -1,6 +1,7 @@
 # DSPy - Databricks Cookbook
+## RFI Agent
 
-## Overview
+### Overview
 The purpose of this cookbook is to provide a starting template to build [DSPy](https://dspy.ai/) applications on Databricks. It covers how to get started using DSPy with Databricks features such as vector search, MLFlow, Databricks Agent Framework and Mosaic Agent Eval. 
 
 It also  provides a guide to understanding the value of DSPy when building GenAI applications on Databricks. 
