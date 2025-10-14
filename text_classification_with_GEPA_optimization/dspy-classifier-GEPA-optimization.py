@@ -159,7 +159,7 @@ from databricks.agents.evals import judges
 
 def validate_classification_with_feedback(example, prediction, trace=None, pred_name=None, pred_trace=None) -> bool:
     """
-    Uses Dtabricks AI judges to validate the prediction and return score (1.0 = corract, 0.0 = incorrect) plus feedback.
+    Uses Databricks AI judges to validate the prediction and return score (1.0 = corract, 0.0 = incorrect) plus feedback.
     """
     # Call correctness judge 
     judgement = judges.correctness(
@@ -237,8 +237,8 @@ print(f"id: {id}")
 
 # COMMAND ----------
 
-small_lm_name = "tech_summit_gpt_oss_20b"
-reflection_lm_name = "databricks-claude-sonnet-4"
+small_lm_name = "databricks-gpt-oss-20b"
+reflection_lm_name = "databricks-claude-sonnet-4-5"
 
 gepa = dspy.GEPA(
     metric=validate_classification_with_feedback,
